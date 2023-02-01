@@ -1,7 +1,6 @@
-package org.example.dto;
+package org.example.model;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

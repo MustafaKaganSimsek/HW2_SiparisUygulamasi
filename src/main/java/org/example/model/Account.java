@@ -1,8 +1,7 @@
-package org.example.dto;
+package org.example.model;
 
 import lombok.*;
 
-import java.lang.annotation.Inherited;
 import java.util.Date;
 import java.util.List;
 

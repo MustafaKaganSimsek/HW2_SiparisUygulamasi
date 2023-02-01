@@ -1,17 +1,15 @@
 package org.example.service.impl;
 
-import org.example.dto.Bill;
-import org.example.dto.Order;
+import org.example.model.Bill;
+import org.example.model.Order;
 import org.example.repository.Repo;
 import org.example.repository.impl.BillRepo;
+import org.example.service.AuditingService;
 import org.example.service.BillService;
 import org.example.service.CompanyService;
 import org.example.service.CustomerService;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class BillServiceImpl implements BillService {
 
@@ -20,8 +18,10 @@ public class BillServiceImpl implements BillService {
     private final Repo<Bill> billRepo;
     private final CustomerService customerService;
     private final CompanyService companyService;
+    private final AuditingService auditingService;
 
     public BillServiceImpl() {
+        this.auditingService = new AuditingService();
         this.customerService = new CustomerServiceImpl();
         this.companyService = new CompanyServiceImpl();
         this.billRepo = new BillRepo();
@@ -37,7 +37,7 @@ public class BillServiceImpl implements BillService {
                     .price(order.getPrice())
                     .customerId(order.getCustomerId())
                     .companyId(order.getCompanyId())
-                    .date(AuditingService.between())
+                    .date(auditingService.between())
                     .build();
             companyService.addBill(bill);
             customerService.addBill(bill);

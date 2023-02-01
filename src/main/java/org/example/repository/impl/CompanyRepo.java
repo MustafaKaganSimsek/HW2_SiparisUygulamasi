@@ -1,16 +1,14 @@
 package org.example.repository.impl;
 
-import org.example.dto.Bill;
-import org.example.dto.Company;
+import org.example.model.Company;
 import org.example.repository.Repo;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class CompanyRepo implements Repo<Company> {
 
-    private static HashMap<Number,Company> data = new HashMap<>();
+    protected static HashMap<Number,Company> data = new HashMap<>();
 
     @Override
     public Company save(Company company) {

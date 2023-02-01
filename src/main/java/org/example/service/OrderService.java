@@ -1,6 +1,6 @@
 package org.example.service;
 
-import org.example.dto.Order;
+import org.example.model.Order;
 
 public interface OrderService {
 

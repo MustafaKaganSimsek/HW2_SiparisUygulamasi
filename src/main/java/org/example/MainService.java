@@ -1,11 +1,9 @@
 package org.example;
 
-import lombok.RequiredArgsConstructor;
-import org.example.dto.Bill;
+import org.example.model.Bill;
 import org.example.service.BillService;
 import org.example.service.impl.BillServiceImpl;
 
-import javax.inject.Inject;
 import java.util.List;
 
 

@@ -1,10 +1,8 @@
-package org.example.dto;
+package org.example.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.dto.Auditing;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Setter

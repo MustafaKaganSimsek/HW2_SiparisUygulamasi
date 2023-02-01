@@ -1,10 +1,9 @@
 package org.example.repository.impl;
 
-import org.example.dto.Bill;
+import org.example.model.Bill;
 import org.example.repository.Repo;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class BillRepo implements Repo<Bill> {
@@ -13,8 +12,9 @@ public class BillRepo implements Repo<Bill> {
 
     @Override
     public Bill save(Bill bill) {
+//        CompanyRepo.data.put(bill.getCompanyId(), );
 
-    return data.put(bill.getId(), bill);
+        return data.put(bill.getId(), bill);
 
     }
 

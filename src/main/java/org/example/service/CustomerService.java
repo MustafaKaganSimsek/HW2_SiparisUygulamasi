@@ -1,7 +1,7 @@
 package org.example.service;
 
-import org.example.dto.Bill;
-import org.example.dto.Customer;
+import org.example.model.Bill;
+import org.example.model.Customer;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ public interface CustomerService {
 
     Customer addBill(Bill bill);
 
-    List<Customer> findAll();
+    List<Customer> findByNameContains(String name);
 
-    List<Customer> findByNameContaining(String customerName);
+    List<Customer> findAll();
 
     List<Customer> filterByMonth(int month);
 

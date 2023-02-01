@@ -1,12 +1,12 @@
 package org.example.service.impl;
 
-import org.example.dto.Bill;
-import org.example.dto.Customer;
+import org.example.model.Bill;
+import org.example.model.Customer;
 import org.example.repository.Repo;
 import org.example.repository.impl.CustomerRepo;
+import org.example.service.AuditingService;
 import org.example.service.CustomerService;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,17 +15,26 @@ public class CustomerServiceImpl implements CustomerService {
     private static int id = 1;
 
     private final Repo<Customer> customerRepo;
+    private final AuditingService auditingService;
+
 
     public CustomerServiceImpl() {
+        this.auditingService = new AuditingService();
         this.customerRepo = new CustomerRepo();
     }
 
 
     @Override
     public Customer save(Customer customer) {
-        customer.setId(id);
+        Customer customer1 = Customer.builder()
+                .id(id)
+                .name(customer.getName())
+                .surname(customer.getSurname())
+                .bill(new LinkedList<Bill>())
+                .date(auditingService.between())
+                .build();
         id++;
-        return customerRepo.save(customer);
+        return customerRepo.save(customer1);
     }
 
     @Override
@@ -46,13 +55,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Customer> findAll() {
-        return customerRepo.findAll();
+    public List<Customer> findByNameContains(String name) {
+        return findAll().stream()
+                .filter(customer -> customer.getName().contains(name))
+                .toList();
     }
 
     @Override
-    public List<Customer> findByNameContaining(String customerName) {
-        return null;
+    public List<Customer> findAll() {
+        return customerRepo.findAll();
     }
 
     @Override

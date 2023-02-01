@@ -1,7 +1,6 @@
 package org.example.service.impl;
 
-import org.example.dto.Bill;
-import org.example.dto.Order;
+import org.example.model.Order;
 import org.example.service.BillService;
 import org.example.service.OrderService;
 
