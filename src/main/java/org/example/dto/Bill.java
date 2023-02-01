@@ -2,19 +2,18 @@ package org.example.dto;
 
 import lombok.*;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
 public class Bill extends Exchange{
 
-    @Generated
     private int id;
 
 
     @Builder
-    public Bill(LocalDate localDate, int companyId, int customerId, double price, int id) {
-        super(localDate, companyId, customerId, price);
+    public Bill(Date date, int companyId, int customerId, double price, int id) {
+        super(date, companyId, customerId, price);
         this.id = id;
     }
 

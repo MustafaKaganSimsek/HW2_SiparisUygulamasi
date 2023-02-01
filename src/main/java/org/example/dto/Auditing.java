@@ -13,5 +13,5 @@ import java.util.Date;
 @AllArgsConstructor
 public class Auditing {
 
-     private LocalDate localDate;
+     private Date Date;
 }

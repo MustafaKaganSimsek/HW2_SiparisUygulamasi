@@ -2,20 +2,22 @@ package org.example.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
-
+@Getter
+@Setter
 public class Company extends Account{
     private int id;
 
     private String sector;
 
-
-
     @Builder
-    public Company(String name, int bill, String sector, int id, LocalDate localDate) {
-        super(name,bill,localDate);
+    public Company(String name, List<Bill> bill, String sector, int id, Date date) {
+        super(name,bill,date);
         this.sector=sector;
         this.id = id;
     }

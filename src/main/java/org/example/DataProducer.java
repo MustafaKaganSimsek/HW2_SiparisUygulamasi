@@ -18,7 +18,10 @@ import org.example.service.impl.CustomerServiceImpl;
 import org.example.service.impl.OrderServiceImpl;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class DataProducer {
 
@@ -47,12 +50,10 @@ public class DataProducer {
     }
 
     private void customerProducer(){
-        for (int i = 1;i<10;i++){
+        for (int i = 1;i<=10;i++){
             Customer customer = Customer.builder()
-                    .id(i)
                     .name("customer"+i)
                     .surname("Surname"+i)
-
                     .build();
 
             customerService.save(customer);
@@ -60,9 +61,8 @@ public class DataProducer {
     }
 
     private void companyProducer(){
-        for (int i = 1;i<10;i++){
+        for (int i = 1;i<=10;i++){
             Company company = Company.builder()
-                    .id(i)
                     .name("company"+i)
                     .sector("sector"+integerProducer(1,3))
                     .build();
@@ -71,9 +71,8 @@ public class DataProducer {
     }
 
     private void orderProducer(){
-        for (int i = 1;i<50;i++){
+        for (int i = 1;i<=50;i++){
             Order order = Order.builder()
-                    .id(i)
                     .price(integerProducer(250,1750))
                     .companyId(integerProducer(1,10))
                     .customerId(integerProducer(1,10))
@@ -99,6 +98,16 @@ public class DataProducer {
     private int integerProducer(int start,int end){
         Random random = new Random();
         return random.nextInt(end+1-start)+start;
+    }
+    private LocalDate betweenLocalDate(LocalDate startInclusive, LocalDate endExclusive) {
+        long startMillis = startInclusive.toEpochDay();
+        long endMillis = endExclusive.toEpochDay();
+        long randomDay = ThreadLocalRandom
+                .current()
+                .nextLong(startMillis, endMillis);
+
+
+        return LocalDate.ofEpochDay(randomDay);
     }
 
 }

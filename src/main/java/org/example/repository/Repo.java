@@ -8,6 +8,7 @@ public interface Repo<T> {
 
     T save( T t);
 
+    T findById( Number id);
 
     List<T> findAll();
 }

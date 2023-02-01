@@ -4,19 +4,25 @@ import org.example.dto.Company;
 import org.example.dto.Customer;
 import org.example.repository.Repo;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 public class CustomerRepo implements Repo<Customer> {
-    private static LinkedList<Customer> data = new LinkedList<>();
+    private static HashMap<Number,Customer> data = new HashMap<>();
 
     @Override
     public Customer save(Customer customer) {
-        return ((customer != null) ? data.add(customer) : false) ? customer : null;
+        return data.put(customer.getId(),customer);
+    }
+
+    @Override
+    public Customer findById(Number id) {
+        return data.get(id);
     }
 
     @Override
     public List<Customer> findAll() {
-        return data.stream().toList();
+        return data.values().stream().toList();
     }
 }
