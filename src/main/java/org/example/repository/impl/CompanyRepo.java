@@ -12,7 +12,8 @@ public class CompanyRepo implements Repo<Company> {
 
     @Override
     public Company save(Company company) {
-        return data.put(company.getId(),company);
+        data.put(company.getId(),company);
+        return data.get(company.getId());
     }
 
     @Override

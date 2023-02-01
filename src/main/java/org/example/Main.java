@@ -11,14 +11,6 @@ import org.example.service.impl.CustomerServiceImpl;
 
 public class Main {
 
-//    Inject
-//    private BillService billService;@
-
-//    private static void a( BillService billService){
-//        Bill bill = Bill.builder().amount(1500).build();
-//        billService.save(bill);
-//    }
-
 
     public static void main(String[] args) {
         Gson gson =new GsonBuilder().setPrettyPrinting().create();
@@ -27,16 +19,14 @@ public class Main {
         CompanyService companyService = new CompanyServiceImpl();
         CustomerService customerService = new CustomerServiceImpl();
         dataProducer.produce();
-        MainService mainService = new MainService();
-        customerService.findAll().forEach(customer -> System.out.println(gson.toJson(customer)));
+        customerService.findAllAsDto().forEach(customer -> System.out.println(gson.toJson(customer)));
         System.out.println("Company names containing \"C\"");
         customerService.findByNameContains("c").forEach(customer -> System.out.println(gson.toJson(customer)));
         System.out.println("company---------------------------------");
-        companyService.findAll().forEach(customer -> System.out.println(gson.toJson(customer)));
+        companyService.findAllAsDto().forEach(customer -> System.out.println(gson.toJson(customer)));
         billService.findAll().forEach(bill -> System.out.println(gson.toJson(bill)));
         billService.filterByUnderBillAmount(1500).forEach(bill -> System.out.println(gson.toJson(bill)));
         billService.filterByUpperBillAmount(1500).forEach(bill -> System.out.println(gson.toJson(bill)));
-        mainService.filterByUpperBillAmount(1500).forEach(bill -> System.out.println(bill));
 
     }
 }

@@ -9,16 +9,16 @@ import java.util.Date;
 public class Bill extends Auditing {
 
     private int id;
-    private int companyId;
-    private int customerId;
+    private Company company;
+    private Customer customer;
     private double price;
 
     @Builder
-    public Bill(int id, int companyId, int customerId, double price,Date date) {
+    public Bill(Date date, int id, Company company, Customer customer, double price) {
         super(date);
         this.id = id;
-        this.companyId = companyId;
-        this.customerId = customerId;
+        this.company = company;
+        this.customer = customer;
         this.price = price;
     }
 }

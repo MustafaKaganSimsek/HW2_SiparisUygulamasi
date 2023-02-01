@@ -11,7 +11,8 @@ public class CustomerRepo implements Repo<Customer> {
 
     @Override
     public Customer save(Customer customer) {
-        return data.put(customer.getId(),customer);
+        data.put(customer.getId(),customer);
+        return data.get(customer.getId());
     }
 
     @Override

@@ -2,19 +2,23 @@ package org.example.service;
 
 import org.example.model.Bill;
 import org.example.model.Customer;
+import org.example.service.dto.CustomerDto;
 
 import java.util.List;
 
 public interface CustomerService {
-    Customer save(Customer customer);
+    CustomerDto save(Customer customer);
 
-    Customer findById(Number id);
+    CustomerDto findById(Number id);
 
     Customer addBill(Bill bill);
 
-    List<Customer> findByNameContains(String name);
+    List<CustomerDto> findByNameContains(String name);
+
+    List<CustomerDto> findAllAsDto();
 
     List<Customer> findAll();
+
 
     List<Customer> filterByMonth(int month);
 

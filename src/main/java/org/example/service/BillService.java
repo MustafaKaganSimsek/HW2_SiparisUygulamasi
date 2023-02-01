@@ -1,19 +1,19 @@
 package org.example.service;
 
-import org.example.model.Bill;
-import org.example.model.Order;
+import org.example.service.dto.BillDto;
+import org.example.service.dto.OrderRequest;
 
 import java.util.List;
 
 public interface BillService {
 
- Bill save (Order order);
+ BillDto save (OrderRequest order);
 
- List<Bill> findAll();
+ List<BillDto> findAll();
 
- List<Bill> filterByUnderBillAmount(int number);
+ List<BillDto> filterByUnderBillAmount(int number);
 
- List<Bill> filterByUpperBillAmount(int number);
+ List<BillDto> filterByUpperBillAmount(int number);
 
 
 }

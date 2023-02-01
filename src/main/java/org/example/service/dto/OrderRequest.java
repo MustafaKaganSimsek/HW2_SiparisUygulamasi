@@ -3,18 +3,20 @@ package org.example.service.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.model.Company;
+import org.example.model.Customer;
 
 @Getter
 @Setter
 public class OrderRequest {
-    private int companyId;
-    private int customerId;
+    private Company company;
+    private Customer customer;
     private double price;
 
     @Builder
-    public OrderRequest(int companyId, int customerId, double price) {
-        this.companyId = companyId;
-        this.customerId = customerId;
+    public OrderRequest(Company company, Customer customer, double price) {
+        this.company = company;
+        this.customer = customer;
         this.price = price;
     }
 }

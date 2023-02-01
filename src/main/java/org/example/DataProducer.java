@@ -7,12 +7,14 @@ import org.example.service.BillService;
 import org.example.service.CompanyService;
 import org.example.service.CustomerService;
 import org.example.service.OrderService;
+import org.example.service.dto.OrderRequest;
 import org.example.service.impl.BillServiceImpl;
 import org.example.service.impl.CompanyServiceImpl;
 import org.example.service.impl.CustomerServiceImpl;
 import org.example.service.impl.OrderServiceImpl;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -64,11 +66,14 @@ public class DataProducer {
     }
 
     private void orderProducer(){
+        List<Company> companies = List.copyOf(companyService.findAll());
+        List<Customer> customer = List.copyOf(customerService.findAll());
+
         for (int i = 1;i<=50;i++){
-            Order order = Order.builder()
+            OrderRequest order = OrderRequest.builder()
                     .price(integerProducer(250,1750))
-                    .companyId(integerProducer(1,10))
-                    .customerId(integerProducer(1,10))
+                    .company(companies.get(integerProducer(0,companies.size()-1)))
+                    .customer(customer.get(integerProducer(0,customer.size()-1)))
                     .build();
 
             orderService.createOrder(order);

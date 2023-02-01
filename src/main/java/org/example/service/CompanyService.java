@@ -2,17 +2,21 @@ package org.example.service;
 
 import org.example.model.Bill;
 import org.example.model.Company;
+import org.example.service.dto.CompanyDto;
 
 import java.util.List;
 
 public interface CompanyService {
-    Company save(Company company);
+    CompanyDto save(Company company);
 
-    Company findById(Number id);
+    CompanyDto findById(Number id);
 
-    Company addBill(Bill bill);
+    CompanyDto addBill(Bill bill);
+
+    List<CompanyDto> findAllAsDto();
 
     List<Company> findAll();
+
 
     List<Company> filterForUnderBillsNumber(int number);
 }
