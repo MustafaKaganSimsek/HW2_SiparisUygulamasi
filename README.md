@@ -14,6 +14,7 @@
 This is an example of how you may give instructions on setting up your project locally. 
 To get a local copy up and running follow these simple example steps.
 
+You can see the maven command outputs in the maven commands.pdf file.
 ### Installation
 
 1. Clone the repo
