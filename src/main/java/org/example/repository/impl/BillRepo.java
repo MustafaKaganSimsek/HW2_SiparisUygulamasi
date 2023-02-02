@@ -25,10 +25,6 @@ public class BillRepo implements Repo<Bill> {
 
     }
 
-    @Override
-    public Bill findById(Number id) {
-        return data.get(id);
-    }
 
     @Override
     public List<Bill> findAll() {

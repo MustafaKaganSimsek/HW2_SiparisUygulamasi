@@ -16,11 +16,6 @@ public class CustomerRepo implements Repo<Customer> {
     }
 
     @Override
-    public Customer findById(Number id) {
-        return data.get(id);
-    }
-
-    @Override
     public List<Customer> findAll() {
         return data.values().stream().toList();
     }

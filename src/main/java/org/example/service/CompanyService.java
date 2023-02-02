@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.model.Bill;
 import org.example.model.Company;
 import org.example.service.dto.CompanyDto;
 

@@ -10,9 +10,7 @@ import java.util.Set;
 public interface CustomerService {
     CustomerDto save(Customer customer);
 
-    CustomerDto findById(Number id);
 
-    Customer addBill(Bill bill);
 
     List<CustomerDto> findByNameContains(String name);
 

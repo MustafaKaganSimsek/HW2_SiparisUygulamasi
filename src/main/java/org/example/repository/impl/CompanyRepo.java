@@ -16,10 +16,6 @@ public class CompanyRepo implements Repo<Company> {
         return data.get(company.getId());
     }
 
-    @Override
-    public Company findById(Number id) {
-        return data.get(id);
-    }
 
     @Override
     public List<Company> findAll() {

@@ -10,8 +10,6 @@ import org.example.service.dto.OrderRequest;
 import org.example.service.dto.converter.BillDtoConverter;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class BillServiceImpl implements BillService {
 

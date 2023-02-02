@@ -2,6 +2,7 @@ package org.example;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.example.model.Customer;
 import org.example.service.BillService;
 import org.example.service.CompanyService;
 import org.example.service.CustomerService;
@@ -19,14 +20,14 @@ public class Main {
         CompanyService companyService = new CompanyServiceImpl();
         CustomerService customerService = new CustomerServiceImpl();
         dataProducer.produce();
+        //Creating customer
+        customerService.save(Customer.builder().name("ali").surname("yılmaz").build());
         System.out.println("----------------------------------------------\nAll customers\n----------------------------------------------");
         customerService.findAllAsDto().forEach(customer -> System.out.println(gson.toJson(customer)));
         System.out.println("----------------------------------------------\nCompany names containing \"C\"\n----------------------------------------------");
         customerService.findByNameContains("c").forEach(customer -> System.out.println(gson.toJson(customer)));
         System.out.println("----------------------------------------------\nInvoices of customers registered in June\n----------------------------------------------");
         billService.findBillByCreatingMonthOfCustomer(6).forEach(bill -> System.out.println(gson.toJson(bill)));
-//        System.out.println("company---------------------------------");
-//        companyService.findAllAsDto().forEach(customer -> System.out.println(gson.toJson(customer)));
         System.out.println("----------------------------------------------\nAll bills\n----------------------------------------------");
         billService.findAll().forEach(bill -> System.out.println(gson.toJson(bill)));
         System.out.println("----------------------------------------------\nBills Upper 1500 TL\n----------------------------------------------");

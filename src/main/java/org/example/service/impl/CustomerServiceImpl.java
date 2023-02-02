@@ -10,7 +10,6 @@ import org.example.service.CustomerService;
 import org.example.service.dto.CustomerDto;
 import org.example.service.dto.converter.CustomerDtoConverter;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -48,22 +47,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDtoConverter.convert(customer2);
     }
 
-    @Override
-    public CustomerDto findById(Number id) {
-        return customerDtoConverter.convert(customerRepo.findById(id));
-    }
-
-    @Override
-    public Customer addBill(Bill bill) {
-        Customer customer = customerRepo.findById(bill.getCustomer().getId());
-        List<Bill> bills = customer.getBill();
-        if (bills==null){
-            bills = new LinkedList<Bill>();
-        }
-            bills.add(bill);
-            customer.setBill(bills);
-        return customerRepo.save(customer);
-    }
 
     @Override
     public List<CustomerDto> findByNameContains(String name) {
