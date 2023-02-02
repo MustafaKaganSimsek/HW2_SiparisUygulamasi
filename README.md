@@ -18,13 +18,13 @@ To get a local copy up and running follow these simple example steps.
 
 1. Clone the repo
 ```
-https://github.com/MustafaKaganSimsek/HW1_KonutTipleriApp.git
+https://github.com/MustafaKaganSimsek/HW2_SiparisUygulamasi.git
 ```
 ### Usage
 
 1. go to folder of the project
 ```
-cd .../HW1_KonutTipleriApp
+cd .../HW2_SiparisUygulamasi
 ```
 2. compile project
 ```
@@ -32,5 +32,5 @@ mvn compile
 ```
 3. run project
 ```
-mvn exec:java -Dexec.mainClass=org.HW_1.Main
+mvn exec:java -Dexec.mainClass=org.HW2.Main
 ```
