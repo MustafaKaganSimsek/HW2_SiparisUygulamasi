@@ -5,12 +5,15 @@ import org.example.model.Company;
 import org.example.repository.Repo;
 import org.example.repository.impl.CompanyRepo;
 import org.example.service.AuditingService;
+import org.example.service.BillService;
 import org.example.service.CompanyService;
 import org.example.service.dto.CompanyDto;
 import org.example.service.dto.converter.CompanyDtoConverter;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class CompanyServiceImpl implements CompanyService {
 
@@ -18,11 +21,14 @@ public class CompanyServiceImpl implements CompanyService {
     private final Repo<Company> companyRepo;
     private final AuditingService auditingService;
     private final CompanyDtoConverter companyDtoConverter;
+    private final BillService billService;
+
 
     public CompanyServiceImpl() {
         this.companyDtoConverter = new CompanyDtoConverter();
         this.auditingService = new AuditingService();
         this.companyRepo = new CompanyRepo();
+        this.billService =new BillServiceImpl();
     }
     @Override
     public CompanyDto save(Company company) {
@@ -38,23 +44,6 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyDto findById(Number id) {
-        return companyDtoConverter.convert(companyRepo.findById(id));
-    }
-
-    @Override
-    public CompanyDto addBill(Bill bill) {
-        Company company = companyRepo.findById(bill.getCompany().getId());
-        List<Bill> bills = company.getBill();
-        if (bills==null){
-            bills = new LinkedList<Bill>();
-        }
-        bills.add(bill);
-        company.setBill(bills);
-        return companyDtoConverter.convert(companyRepo.save(company));
-    }
-
-    @Override
     public List<CompanyDto> findAllAsDto() {
         return companyDtoConverter.convert(companyRepo.findAll());
     }
@@ -65,8 +54,14 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<Company> filterForUnderBillsNumber(int number) {
-        return null;
+    public Set<String> findSectorsOfUnderBillAmount(int number) {
+        List<Company> companies = companyRepo.findAll().stream()
+                .filter(
+                        company -> company.getBill().stream()
+                                .mapToDouble(bill->bill.getPrice())
+                                .average().getAsDouble()<number)
+                .toList();
+        return companies.stream().map(company -> company.getSector()).collect(Collectors.toSet());
     }
 
 

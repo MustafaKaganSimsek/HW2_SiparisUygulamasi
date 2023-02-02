@@ -5,13 +5,13 @@ import org.example.repository.Repo;
 import org.example.repository.impl.BillRepo;
 import org.example.service.AuditingService;
 import org.example.service.BillService;
-import org.example.service.CompanyService;
-import org.example.service.CustomerService;
 import org.example.service.dto.BillDto;
 import org.example.service.dto.OrderRequest;
 import org.example.service.dto.converter.BillDtoConverter;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class BillServiceImpl implements BillService {
 
@@ -51,12 +51,19 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
+    public List<BillDto> findBillByCreatingMonthOfCustomer(int month) {
+        return billDtoConverter.convert(billRepo.findAll().stream().filter(bill -> bill.getCustomer().getDate().getMonth()==month)
+                .toList());
+    }
+
+    @Override
     public List<BillDto> filterByUnderBillAmount(int number) {
 
         return billDtoConverter.convert(billRepo.findAll().stream()
                 .filter(bill -> bill.getPrice()<number)
                 .toList());
     }
+
 
     @Override
     public List<BillDto> filterByUpperBillAmount(int number) {
@@ -66,8 +73,12 @@ public class BillServiceImpl implements BillService {
                 .toList());
     }
 
-
-
+    @Override
+    public double avaregeOfUnderBillAmount(int number) {
+        return filterByUpperBillAmount(number).stream()
+                .mapToDouble(BillDto::getPrice).average()
+                .getAsDouble();
+    }
 
 
 }
