@@ -17,7 +17,6 @@ import java.util.Random;
 
 public class DataProducer {
 
-    private final BillService billService;
 
     private final CustomerService customerService;
 
@@ -32,7 +31,6 @@ public class DataProducer {
         this.orderService = new OrderServiceImpl();
         this.companyService = new CompanyServiceImpl();
         this.customerService = new CustomerServiceImpl();
-        this.billService = new BillServiceImpl();
     }
 
     public void produce(){
