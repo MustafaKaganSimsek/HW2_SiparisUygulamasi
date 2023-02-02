@@ -1,11 +1,11 @@
 # HW2_SiparisUygulamasi
 
- Patika.dev DefineX Java Spring Practicum third week, first homework
+ Patika.dev DefineX Java Spring Practicum third week, second homework
 
 
 ## About Project
 
- An application where a customer can create orders, save and view their invoices
+ An application where a customer can create orders, save and view their invoices.
 * Java 17
 * Maven
 
