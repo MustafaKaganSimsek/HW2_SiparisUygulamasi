@@ -24,7 +24,7 @@ public class Main {
         customerService.save(Customer.builder().name("ali").surname("yılmaz").build());
         System.out.println("----------------------------------------------\nAll customers\n----------------------------------------------");
         customerService.findAllAsDto().forEach(customer -> System.out.println(gson.toJson(customer)));
-        System.out.println("----------------------------------------------\nCompany names containing \"C\"\n----------------------------------------------");
+        System.out.println("----------------------------------------------\nCustomer names containing \"C\"\n----------------------------------------------");
         customerService.findByNameContains("c").forEach(customer -> System.out.println(gson.toJson(customer)));
         System.out.println("----------------------------------------------\nInvoices of customers registered in June\n----------------------------------------------");
         billService.findBillByCreatingMonthOfCustomer(6).forEach(bill -> System.out.println(gson.toJson(bill)));
